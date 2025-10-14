@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcy4egf6p5anj"]
+
+[ext_resource type="Script" uid="uid://brcojfcwod673" path="res://scripts/ResourceNode.gd" id="1_1lccd"]
+[ext_resource type="PackedScene" uid="uid://dv5v727vtdix3" path="res://ui/FloatingText.tscn" id="3_7ouvn"]
+[ext_resource type="PackedScene" uid="uid://bk1jr50rws40t" path="res://effects/ResourceParticles.tscn" id="4_gor6i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i7ahh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4f6g1"]
+
+[node name="ResourceNode" type="Area3D"]
+script = ExtResource("1_1lccd")
+resource_type = "stone"
+floating_text_scene = ExtResource("3_7ouvn")
+particles_scene = ExtResource("4_gor6i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13337097, 0)
+shape = SubResource("BoxShape3D_i7ahh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13575694, 0)
+mesh = SubResource("BoxMesh_4f6g1")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000115692616, 0.5443895, 0.5020426)
+text = "Stone ore"

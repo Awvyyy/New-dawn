@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtpq8nbdlcpi4"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yumut"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jutd2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8cygc"]
+
+[node name="workbench" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3135474, 0)
+mesh = SubResource("PlaneMesh_yumut")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.5011486, 0)
+mesh = SubResource("CylinderMesh_jutd2")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.8863231, 0)
+shape = SubResource("BoxShape3D_8cygc")

@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://4w2csv0ayerb"]
+
+[ext_resource type="Script" uid="uid://kr7qdqa01tab" path="res://scripts/hud.gd" id="1_rbyyf"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_rbyyf")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 15.0
+offset_right = 159.0
+offset_bottom = 120.0
+
+[node name="ResourceLabel_Metal" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Metal: 0"
+
+[node name="ResourceLabel_Wood" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Wood: 0"
+
+[node name="ResourceLabel_Stone" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Stone: 0"
+
+[node name="ResourceLabel_Water" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Water bottles: 0"
+
+[node name="MetalRow" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="icon_metal" type="TextureRect" parent="Control/VBoxContainer/MetalRow"]
+layout_mode = 2
+
+[node name="WoodRow" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="icon_wood" type="TextureRect" parent="Control/VBoxContainer/WoodRow"]
+layout_mode = 2
+
+[node name="StoneRow" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="icon_stone" type="TextureRect" parent="Control/VBoxContainer/StoneRow"]
+layout_mode = 2
+
+[node name="WaterRow" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="icon_water" type="TextureRect" parent="Control/VBoxContainer/WaterRow"]
+layout_mode = 2

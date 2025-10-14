@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv5v727vtdix3"]
+
+[ext_resource type="Script" uid="uid://0xqmo25ip2m6" path="res://scripts/FloatingText.gd" id="1_4tb8y"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_4tb8y")
+
+[node name="Label3D" type="Label3D" parent="."]
+offset = Vector2(0, 1.5)
+billboard = 1
+modulate = Color(0.34117648, 1, 1, 1)
+text = "+5"
+font_size = 48

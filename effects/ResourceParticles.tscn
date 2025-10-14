@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk1jr50rws40t"]
+
+[ext_resource type="Material" uid="uid://5jd4r2ocns20" path="res://materials/highlight_material.tres" id="1_c0fqf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4pd4c"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_c0fqf"]
+
+[node name="CPUParticles3D" type="CPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_4pd4c")
+material_overlay = ExtResource("1_c0fqf")
+emitting = false
+amount = 45
+lifetime = 0.8
+one_shot = true
+mesh = SubResource("SphereMesh_c0fqf")
+spread = 120.0
+gravity = Vector3(0, -4, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 4.0
+scale_amount_min = 0.3
+scale_amount_max = 0.3
+
+[node name="ResourceParticles" type="Node3D" parent="."]
+
+[node name="LightPulse" type="OmniLight3D" parent="."]
+light_color = Color(0.003921569, 0.003921569, 0.003921569, 1)
+light_energy = 3.0
+omni_range = 6.0

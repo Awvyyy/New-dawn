@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bftny8h3qfhil"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rksc8"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ditc7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lyhs3"]
+
+[node name="campfire" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.0865584, 0)
+mesh = SubResource("PlaneMesh_rksc8")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.19999999, 0, 0, 0, 0.4669963, -0.071458474, 0, 0.17864615, 0.18679851, 0, 0.39835635, -0.38001147)
+mesh = SubResource("CylinderMesh_ditc7")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-0.07967618, 0.16385782, 0.17133534, 0, 0.46699637, -0.07145848, -0.18344401, -0.07116921, -0.074416965, -0.2609816, 0.39835635, 0.032256246)
+mesh = SubResource("CylinderMesh_ditc7")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-0.06880732, -0.16774091, -0.17539564, 2.4342444e-09, 0.4669963, -0.07145848, 0.18779124, -0.061460793, -0.0642655, 0.22436884, 0.39835635, 0.0383346)
+mesh = SubResource("CylinderMesh_ditc7")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.8863231, 0)
+shape = SubResource("BoxShape3D_lyhs3")

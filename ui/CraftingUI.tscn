@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cds1gsrk4yh1x"]
+
+[ext_resource type="Script" uid="uid://ck3n3tllvgtns" path="res://scripts/craftingUI.gd" id="1_rgtvg"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+offset_top = 180.0
+offset_right = 365.0
+offset_bottom = 274.0
+script = ExtResource("1_rgtvg")
+
+[node name="buttons" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="WorkbenchButton" type="Button" parent="buttons"]
+layout_mode = 2
+text = "Craft Workbench"
+
+[node name="CampfireButton" type="Button" parent="buttons"]
+layout_mode = 2
+text = "Craft  Campfire"
+
+[node name="Crafting" type="Label" parent="buttons"]
+layout_mode = 2
