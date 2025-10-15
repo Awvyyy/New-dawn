@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://4g1dgmlmsoql"]
+[gd_scene load_steps=13 format=3 uid="uid://4g1dgmlmsoql"]
 
 [ext_resource type="Script" uid="uid://c51spkb7f7ikb" path="res://scripts/Main.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://d2po25ggg7sbf" path="res://scenes/resources/metal_node.tscn" id="2_0wfyh"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bcy4egf6p5anj" path="res://scenes/resources/stone_node.tscn" id="6_tipki"]
 [ext_resource type="PackedScene" uid="uid://dhvh73v1y5c6v" path="res://scenes/resources/water_node.tscn" id="7_85g3d"]
 [ext_resource type="PackedScene" uid="uid://cds1gsrk4yh1x" path="res://ui/CraftingUI.tscn" id="9_85g3d"]
+[ext_resource type="PackedScene" uid="uid://c2gibjspgu3u6" path="res://ui/InventoryUI.tscn" id="10_choun"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbgi4"]
 metallic = 1.0
@@ -34,7 +35,7 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.0034262, 4.2912865)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.086391926, 0.5512839, 7.2014704)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ores"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.39463127, 0)
+transform = Transform3D(0.6, 0, 0, 0, 0.7, 0, 0, 0, 0.6, 0, -0.39463127, 0)
 material_override = SubResource("StandardMaterial3D_tbgi4")
 mesh = SubResource("PlaneMesh_0wfyh")
 skeleton = NodePath("../..")
@@ -54,3 +55,6 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.3, -5)
 [node name="CanvasLayer" parent="." instance=ExtResource("2_sugp2")]
 
 [node name="Control" parent="." instance=ExtResource("9_85g3d")]
+
+[node name="InventoryUi" parent="." instance=ExtResource("10_choun")]
+visible = false

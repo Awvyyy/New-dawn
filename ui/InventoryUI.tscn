@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2gibjspgu3u6"]
+
+[ext_resource type="Script" uid="uid://b5ri5cx2xfitg" path="res://scripts/inventoryUI.gd" id="1_w7o80"]
+[ext_resource type="PackedScene" uid="uid://bsgkr1e4xxlww" path="res://ui/slot.tscn" id="2_uddj1"]
+
+[node name="InventoryUi" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_w7o80")
+slot_scene = ExtResource("2_uddj1")
+
+[node name="Panel" type="ParallaxBackground" parent="."]
+
+[node name="GridContainer" type="GridContainer" parent="Panel"]
+offset_left = 429.0
+offset_top = 138.0
+offset_right = 706.0
+offset_bottom = 315.0
+columns = 4

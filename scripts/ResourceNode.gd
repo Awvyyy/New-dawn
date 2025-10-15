@@ -18,7 +18,6 @@ var original_material: Material
 var is_collected := false
 var player_in_range := false
 var player_ref: Node3D = null
-var resource_manager = null
 var is_glowing_nearby := false
 var is_mouse_over := false
 
@@ -29,11 +28,12 @@ func _ready() -> void:
 	if mesh:
 		original_material = mesh.get_surface_override_material(0)
 
-	# 🔍 Ищем ResourceManager
-	if Engine.has_singleton("ResourceManager"):
-		resource_manager = Engine.get_singleton("ResourceManager")
-	else:
-		resource_manager = get_node_or_null("/root/ResourceManager")
+	# ⚙️ Здесь больше не используем ResourceManager для хранения — но всё ещё может быть, если ты хочешь совместимость
+	# Этот код можно оставить или убрать:
+	# if Engine.has_singleton("ResourceManager"):
+	#     resource_manager = Engine.get_singleton("ResourceManager")
+	# else:
+	#     resource_manager = get_node_or_null("/root/ResourceManager")
 
 	# ⚡ Подключаем сигналы
 	if not is_connected("input_event", Callable(self, "_on_input_event")):
@@ -120,7 +120,7 @@ func _process(_delta: float) -> void:
 			if not is_mouse_over:
 				_set_highlight(false)
 
-	# Кнопка взаимодействия
+	# Нажатие клавиши взаимодействия
 	if player_in_range and not is_collected and Input.is_action_just_pressed("interact"):
 		if _player_close_enough():
 			is_collected = true
@@ -153,10 +153,17 @@ func _collect_resource(click_position: Vector3) -> void:
 				label_3d.visible = false
 		)
 
-	if resource_manager:
-		resource_manager.add_resource(resource_type, resource_amount)
+	# — добавить ресурс в инвентарь
+	var inventory = null
+	if Engine.has_singleton("Inventory"):
+		inventory = Engine.get_singleton("Inventory")
 	else:
-		push_warning("⚠️ ResourceManager не подключен!")
+		inventory = get_node_or_null("/root/Inventory")
+
+	if inventory:
+		inventory.add_item(resource_type, resource_amount)
+	else:
+		push_warning("⚠️ Inventory не найден!")
 
 	_spawn_particles(click_position)
 	_spawn_floating_text(click_position, resource_amount, resource_type)
@@ -239,7 +246,6 @@ func _spawn_particles(_click_position: Vector3) -> void:
 	await tree.create_timer(2.0).timeout
 	if inst and inst.is_inside_tree():
 		inst.queue_free()
-
 
 
 # =========================

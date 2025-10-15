@@ -7,23 +7,53 @@ extends CanvasLayer
 	"water": $Control/VBoxContainer/ResourceLabel_Water,
 }
 
+var inventory_manager: Node = null
+
+
+# ========================
+# ⚙️ Инициализация
+# ========================
 func _ready() -> void:
-	print("✅ HUD ready!")
+	print("✅ HUD ready! id:", self.get_instance_id())
+
+	# Проверим, нет ли уже другого HUD в дереве
+	for node in get_tree().get_nodes_in_group("hud_instances"):
+		if node != self:
+			queue_free()
+			return
+
+	add_to_group("hud_instances")
+
 	for rname in resource_labels.keys():
 		print("  ", rname, ":", resource_labels[rname])
-	
-	# подключаем сигнал от ResourceManager (глобального)
-	if ResourceManager:
-		ResourceManager.connect("resource_changed", Callable(self, "_on_resource_changed"))
-		print("✅ Подключен к ResourceManager")
+
+	if Engine.has_singleton("Inventory"):
+		inventory_manager = Engine.get_singleton("Inventory")
 	else:
-		push_error("⚠️ ResourceManager не найден!")
+		inventory_manager = get_node_or_null("/root/Inventory")
 
-func _on_resource_changed(resource_name: String, new_value: int) -> void:
-	print("🔔 Сигнал получен от ResourceManager:", resource_name, new_value)
+	if inventory_manager:
+		inventory_manager.connect("inventory_updated", Callable(self, "_on_inventory_updated"))
+		print("✅ Подключен к InventoryManager")
+		_on_inventory_updated()
+	else:
+		push_error("⚠️ InventoryManager не найден!")
 
-	if not resource_labels.has(resource_name):
-		push_warning("⚠️ Нет лейбла для ресурса: %s" % resource_name)
+
+
+# ========================
+# 🔁 Обновление всех значений
+# ========================
+func _on_inventory_updated() -> void:
+	if not inventory_manager:
 		return
-	
-	resource_labels[resource_name].text = "%s: %d" % [resource_name.capitalize(), new_value]
+
+	var items = inventory_manager.get_all_items()
+
+	for rname in resource_labels.keys():
+		var amount := 0
+		if items.has(rname):
+			amount = int(items[rname]["amount"])
+		resource_labels[rname].text = "%s: %d" % [rname.capitalize(), amount]
+
+	print("🔁 HUD обновлён по сигналу от InventoryManager")

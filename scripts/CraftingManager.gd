@@ -14,14 +14,18 @@ var recipes = {
 	}
 }
 
-var resource_manager = null
+var inventory_manager: Node = null
 
 
+# ========================
+# ⚙️ Инициализация
+# ========================
 func _ready():
-	if Engine.has_singleton("ResourceManager"):
-		resource_manager = Engine.get_singleton("ResourceManager")
+	# Ищем InventoryManager (autoload)
+	if Engine.has_singleton("Inventory"):
+		inventory_manager = Engine.get_singleton("Inventory")
 	else:
-		resource_manager = get_node_or_null("/root/ResourceManager")
+		inventory_manager = get_node_or_null("/root/Inventory")
 
 	print("✅ CraftingManager initialized")
 
@@ -39,13 +43,14 @@ func craft_item(item_name: String) -> void:
 
 	# Проверяем наличие всех ресурсов
 	for res_type in requirements.keys():
-		if resource_manager.get_resource(res_type) < requirements[res_type]:
+		var need = requirements[res_type]
+		if inventory_manager == null or inventory_manager.get_amount(res_type) < need:
 			_show_notification("❌ Недостаточно " + res_type)
 			return
 
 	# Вычитаем ресурсы
 	for res_type in requirements.keys():
-		resource_manager.add_resource(res_type, -requirements[res_type])
+		inventory_manager.remove_item(res_type, requirements[res_type])
 
 	# Задаём фиксированную точку спавна
 	var spawn_pos = Vector3(-8, 0, 5)
@@ -58,7 +63,7 @@ func craft_item(item_name: String) -> void:
 
 
 # ========================
-# 🧱 Спавн предмета (фиксированная позиция)
+# 🧱 Спавн предмета
 # ========================
 func _spawn_crafted_item(item_name: String, spawn_pos: Vector3) -> void:
 	if not recipes.has(item_name):
@@ -75,8 +80,7 @@ func _spawn_crafted_item(item_name: String, spawn_pos: Vector3) -> void:
 	var inst = scene.instantiate()
 	var world_root = get_tree().root.get_child(0)
 	world_root.add_child(inst)
-	print("📦 Родитель верстака:", inst.get_parent().get_path())
-
+	print("📦 Родитель созданного объекта:", inst.get_parent().get_path())
 
 	# === Устанавливаем позицию ===
 	inst.global_position = spawn_pos
