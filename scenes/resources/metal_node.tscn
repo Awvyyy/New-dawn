@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2po25ggg7sbf"]
+[gd_scene load_steps=7 format=3 uid="uid://d2po25ggg7sbf"]
 
 [ext_resource type="Script" uid="uid://brcojfcwod673" path="res://scripts/ResourceNode.gd" id="1_8lfd6"]
 [ext_resource type="PackedScene" uid="uid://bk1jr50rws40t" path="res://effects/ResourceParticles.tscn" id="2_4f6g1"]
+[ext_resource type="Material" uid="uid://5jd4r2ocns20" path="res://materials/highlight_material.tres" id="2_cfptv"]
 [ext_resource type="PackedScene" uid="uid://dv5v727vtdix3" path="res://ui/FloatingText.tscn" id="3_ehxo0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i7ahh"]
@@ -10,6 +11,7 @@
 
 [node name="ResourceNode" type="Area3D"]
 script = ExtResource("1_8lfd6")
+highlight_material = ExtResource("2_cfptv")
 floating_text_scene = ExtResource("3_ehxo0")
 particles_scene = ExtResource("2_4f6g1")
 

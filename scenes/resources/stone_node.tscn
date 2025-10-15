@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcy4egf6p5anj"]
+[gd_scene load_steps=7 format=3 uid="uid://bcy4egf6p5anj"]
 
 [ext_resource type="Script" uid="uid://brcojfcwod673" path="res://scripts/ResourceNode.gd" id="1_1lccd"]
+[ext_resource type="Material" uid="uid://5jd4r2ocns20" path="res://materials/highlight_material.tres" id="2_1lccd"]
 [ext_resource type="PackedScene" uid="uid://dv5v727vtdix3" path="res://ui/FloatingText.tscn" id="3_7ouvn"]
 [ext_resource type="PackedScene" uid="uid://bk1jr50rws40t" path="res://effects/ResourceParticles.tscn" id="4_gor6i"]
 
@@ -11,6 +12,7 @@
 [node name="ResourceNode" type="Area3D"]
 script = ExtResource("1_1lccd")
 resource_type = "stone"
+highlight_material = ExtResource("2_1lccd")
 floating_text_scene = ExtResource("3_7ouvn")
 particles_scene = ExtResource("4_gor6i")
 
