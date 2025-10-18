@@ -13,6 +13,7 @@ slot_scene = ExtResource("2_uddj1")
 [node name="Panel" type="ParallaxBackground" parent="."]
 
 [node name="GridContainer" type="GridContainer" parent="Panel"]
+visible = false
 offset_left = 429.0
 offset_top = 138.0
 offset_right = 706.0

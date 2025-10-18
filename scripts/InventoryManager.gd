@@ -119,3 +119,18 @@ func consume_items(requirements: Dictionary) -> void:
 # ==============================
 func get_all_items() -> Dictionary:
 	return items.duplicate(true)
+
+# ==============================
+# 🔄 SWAP (для UI-перетаскивания)
+# ==============================
+func swap_items(item_a: String, item_b: String) -> void:
+	if not items.has(item_a) or not items.has(item_b):
+		push_warning("⚠️ Невозможно обменять предметы: '%s' или '%s' не найдены." % [item_a, item_b])
+		return
+
+	var temp = items[item_a]
+	items[item_a] = items[item_b]
+	items[item_b] = temp
+
+	print("🔄 Предметы '%s' и '%s' поменялись местами" % [item_a, item_b])
+	emit_signal("inventory_updated")
