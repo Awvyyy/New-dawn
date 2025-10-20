@@ -23,7 +23,7 @@ var amount_spinbox: SpinBox
 var selected_item: String
 var max_amount: int = 0
 var drop_target_slot: TextureButton
-var from_slot: TextureButton
+var from_slot_field: TextureButton  # Переименовал поле, чтобы не конфликтовать с параметрами функций
 
 # ===============================
 # READY
@@ -172,7 +172,7 @@ func _get_drag_data(_mouse_pos: Vector2) -> Variant:
 	var slot = get_slot_under_mouse(get_global_mouse_position())
 	if slot == null:
 		return {}
-	from_slot = slot
+	from_slot_field = slot
 	set_drag_preview(slot.duplicate())
 	return {
 		"item_name": slot.get_meta("item_name"),
@@ -191,8 +191,8 @@ func _drop_data(_mouse_pos: Vector2, data: Variant) -> void:
 	max_amount = data["amount"]
 
 	if Input.is_key_pressed(KEY_SHIFT):
-		var move_amount = max(1, int(max_amount / 2))
-		_animate_drop(from_slot, drop_target_slot, move_amount)
+		var move_amount = max(1, int(max_amount / 2.0))
+		_animate_drop(from_slot_field, drop_target_slot, move_amount)
 	else:
 		amount_spinbox.max_value = max_amount
 		amount_spinbox.value = max_amount
@@ -201,17 +201,17 @@ func _drop_data(_mouse_pos: Vector2, data: Variant) -> void:
 func _on_amount_confirmed():
 	var move_amount = int(amount_spinbox.value)
 	amount_dialog.hide()
-	_animate_drop(from_slot, drop_target_slot, move_amount)
+	_animate_drop(from_slot_field, drop_target_slot, move_amount)
 
 # ===============================
 # Перемещение предметов
 # ===============================
 func _perform_move(move_amount: int):
-	if from_slot == null or drop_target_slot == null or move_amount <= 0:
+	if from_slot_field == null or drop_target_slot == null or move_amount <= 0:
 		return
 
-	var from_item_name = from_slot.get_meta("item_name")
-	var from_amount = from_slot.get_meta("amount")
+	var from_item_name = from_slot_field.get_meta("item_name")
+	var _from_amount = from_slot_field.get_meta("amount")
 	var to_item_name = drop_target_slot.get_meta("item_name")
 	var to_amount = drop_target_slot.get_meta("amount")
 
@@ -242,27 +242,27 @@ func get_slot_under_mouse(pos: Vector2) -> TextureButton:
 # ===============================
 # Анимация дропа с цифрой
 # ===============================
-func _animate_drop(from_slot: TextureButton, to_slot: TextureButton, move_amount: int) -> void:
-	if from_slot == null or to_slot == null:
+func _animate_drop(from_slot_param: TextureButton, to_slot_param: TextureButton, move_amount: int) -> void:
+	if from_slot_param == null or to_slot_param == null:
 		return
 
 	var icon_preview = TextureRect.new()
-	icon_preview.texture = from_slot.texture_normal
-	icon_preview.size = from_slot.custom_minimum_size
-	icon_preview.global_position = from_slot.get_global_position()
+	icon_preview.texture = from_slot_param.texture_normal
+	icon_preview.size = from_slot_param.custom_minimum_size
+	icon_preview.global_position = from_slot_param.get_global_position()
 	icon_preview.z_index = 1000
 	add_child(icon_preview)
 
 	var amount_label = Label.new()
 	amount_label.text = str(move_amount)
 	amount_label.add_theme_color_override("font_color", Color(1,1,0))
-	amount_label.global_position = from_slot.get_global_position() + Vector2(0, -10)
+	amount_label.global_position = from_slot_param.get_global_position() + Vector2(0, -10)
 	amount_label.z_index = 1001
 	add_child(amount_label)
 
 	var tween = create_tween()
-	tween.tween_property(icon_preview, "global_position", to_slot.get_global_position(), 0.25).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
-	tween.parallel().tween_property(amount_label, "global_position", to_slot.get_global_position() + Vector2(0, -10), 0.25).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(icon_preview, "global_position", to_slot_param.get_global_position(), 0.25).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tween.parallel().tween_property(amount_label, "global_position", to_slot_param.get_global_position() + Vector2(0, -10), 0.25).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
 	tween.finished.connect(Callable(self, "_on_drop_animation_finished_with_label").bind(icon_preview, amount_label, move_amount))
 
 func _on_drop_animation_finished_with_label(icon_preview: Node, amount_label: Node, move_amount: int) -> void:

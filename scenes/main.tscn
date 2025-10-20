@@ -22,7 +22,7 @@ size = Vector2(50, 50)
 script = ExtResource("1_jyhfs")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.7071068, -0.5, 0.5, 0, 0.7071068, 0.70710677, -0.7071068, -0.5, 0.5, 10, 15, 10)
+transform = Transform3D(0.7443115, 0.47222897, -0.47222897, 0, 0.70710677, 0.70710677, 0.6678326, -0.5263077, 0.5263077, -7.8578506, 15, 15.672674)
 current = true
 script = ExtResource("2_85g3d")
 
@@ -35,22 +35,22 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.0034262, 4.2912865)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.086391926, 0.5512839, 7.2014704)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ores"]
-transform = Transform3D(0.6, 0, 0, 0, 0.7, 0, 0, 0, 0.6, 0, -0.39463127, 0)
+transform = Transform3D(1, 0, 0, 0, 1.167, 0, 0, 0, 1, 0, -0.39463127, 0)
 material_override = SubResource("StandardMaterial3D_tbgi4")
 mesh = SubResource("PlaneMesh_0wfyh")
 skeleton = NodePath("../..")
 
 [node name="Metal" parent="Ores" instance=ExtResource("2_0wfyh")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.3, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.3, -24.129635)
 
 [node name="Wood" parent="Ores" instance=ExtResource("5_tefeu")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5, 0.3, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6.7781124, 0.38842565, -1.4476094)
 
 [node name="stone" parent="Ores" instance=ExtResource("6_tipki")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5, 0.3, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -8.855874, 0.3, -3.8980308)
 
 [node name="water" parent="Ores" instance=ExtResource("7_85g3d")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.3, -5)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13.4527235, 0.34020406, 3.1410518)
 
 [node name="CanvasLayer" parent="." instance=ExtResource("2_sugp2")]
 
