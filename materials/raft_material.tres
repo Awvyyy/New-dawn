@@ -8,6 +8,6 @@ albedo_texture = ExtResource("1")
 roughness = 0.48
 metallic = 0.08
 uv1_scale = Vector3(4, 1, 4)
-sss_strength = 0.08
+subsurface_scattering_strength = 0.08
 clearcoat = 0.25
 clearcoat_roughness = 0.28

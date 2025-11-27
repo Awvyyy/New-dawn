@@ -8,6 +8,6 @@ albedo_texture = ExtResource("1")
 roughness = 0.45
 metallic = 0.05
 uv1_scale = Vector3(2, 1, 2)
-specular = 0.5
+metallic_specular = 0.5
 clearcoat = 0.2
 clearcoat_roughness = 0.35
