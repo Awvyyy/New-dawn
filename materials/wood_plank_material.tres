@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://woodmaterial"]
+
+[ext_resource type="Texture2D" uid="uid://woodgradient" path="res://materials/textures/wood_gradient.tres" id="1"]
+
+[resource]
+albedo_color = Color(0.86, 0.71, 0.52, 1)
+albedo_texture = ExtResource("1")
+roughness = 0.45
+metallic = 0.05
+uv1_scale = Vector3(2, 1, 2)
+specular = 0.5
+clearcoat = 0.2
+clearcoat_roughness = 0.35
