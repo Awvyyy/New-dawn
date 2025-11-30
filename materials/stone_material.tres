@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://stonematerial"]
+
+[ext_resource type="Texture2D" uid="uid://stonenoise" path="res://materials/textures/stone_noise.tres" id="1"]
+
+[resource]
+albedo_color = Color(0.52, 0.52, 0.5, 1)
+albedo_texture = ExtResource("1")
+roughness = 0.7
+metallic = 0.0
+uv1_scale = Vector3(1.5, 1.5, 1.5)
+normal_enabled = false
+ao_enabled = true

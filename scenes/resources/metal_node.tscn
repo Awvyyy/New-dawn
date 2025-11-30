@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2po25ggg7sbf"]
+[gd_scene load_steps=8 format=3 uid="uid://d2po25ggg7sbf"]
 
 [ext_resource type="Script" uid="uid://brcojfcwod673" path="res://scripts/ResourceNode.gd" id="1_8lfd6"]
 [ext_resource type="PackedScene" uid="uid://bk1jr50rws40t" path="res://effects/ResourceParticles.tscn" id="2_4f6g1"]
 [ext_resource type="Material" uid="uid://5jd4r2ocns20" path="res://materials/highlight_material.tres" id="2_cfptv"]
 [ext_resource type="PackedScene" uid="uid://dv5v727vtdix3" path="res://ui/FloatingText.tscn" id="3_ehxo0"]
+[ext_resource type="Material" uid="uid://metalmaterial" path="res://materials/metal_material.tres" id="4_sd400"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i7ahh"]
 
@@ -22,6 +23,7 @@ shape = SubResource("BoxShape3D_i7ahh")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13575694, 0)
 mesh = SubResource("BoxMesh_4f6g1")
+material_override = ExtResource("4_sd400")
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000115692616, 0.51441586, 0.50391203)
